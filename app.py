@@ -87,7 +87,7 @@ def register():
                         password=password))
     db.session.commit()
 
-    logging.info(f"Registered user with email {email} successfully")
+    logging.info(f"Registered user with email {email}")
 
     return jsonify("Registered successfully"), 201
 
@@ -116,6 +116,9 @@ def get_all_users():
 @jwt_required()
 def get_user():
     user = User.query.get(current_user.id)
+    
+    logging.info(f"Returned information on user with email {user.email}")
+
     return jsonify(str(user)), 200
 
 
