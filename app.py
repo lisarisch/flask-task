@@ -114,12 +114,10 @@ def get_all_users():
 
 @app.route("/user", methods=["GET"])
 @jwt_required()
-def get_user():
-    user = User.query.get(current_user.id)
-    
-    logging.info(f"Returned information on user with email {user.email}")
+def get_user():    
+    logging.info(f"Returned information on user with email {current_user.email}")
 
-    return jsonify(str(user)), 200
+    return jsonify(str(current_user)), 200
 
 
 @app.route("/user", methods=["PUT"])
